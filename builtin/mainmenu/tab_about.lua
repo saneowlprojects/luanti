@@ -49,8 +49,8 @@ return {
 		local version = core.get_version()
 
 		local hypertext = {
-			"<tag name=heading color=#ff0>",
-			"<tag name=gray color=#aaa>",
+			"<tag name=heading color=" .. menudata.palette.accent .. ">",
+			"<tag name=gray color=" .. menudata.palette.text_secondary .. ">",
 		}
 
 		local credits = get_credits()

@@ -82,8 +82,12 @@ local function get_formspec(self)
 	end
 
 	local formspec = (prepend or "")
-	formspec = formspec .. ("bgcolor[;neither]container[0,%f]box[0,0;%f,%f;#0000008C]"):format(
-			TABHEADER_H, orig_tsize.width, orig_tsize.height)
+	local box_color = "#1A1A24"
+	if menudata and menudata.palette and menudata.palette.surface then
+		box_color = menudata.palette.surface
+	end
+	formspec = formspec .. ("bgcolor[;neither]container[0,%f]box[0,0;%f,%f;%s]"):format(
+			TABHEADER_H, orig_tsize.width, orig_tsize.height, box_color)
 	formspec = formspec .. self:tab_header(tab_header_size) .. content
 
 	if self.end_button then
