@@ -9,6 +9,14 @@
 
 Luanti is a free open-source voxel game engine with easy modding and game creation.
 
+### UI Redesign (Lunuati Style)
+This fork features a redesigned homescreen/main menu with a modern, minimalistic dark-mode aesthetic.
+
+**Key modifications include:**
+- **Modern Color Palette**: Updated with a deep near-black background (#0F0F14), elevated surface cards (#1A1A24), and vibrant primary accents (#6C5CE7).
+- **Global Styling**: Redesigned UI components (buttons, textlists, checkboxes) with consistent design tokens.
+- **Modern Theme**: A new "Modern" UI theme that overrides legacy light/dark modes for a cohesive experience.
+
 Copyright (C) 2010-2026 Perttu Ahola <celeron55@gmail.com>
 and contributors (see source file comments and the version control log)
 
