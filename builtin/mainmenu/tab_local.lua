@@ -89,7 +89,7 @@ function singleplayer_refresh_gamebar()
 			"game_button_bar",
 			{x = 0, y = gamebar_pos_y},
 			{x = MAIN_TAB_W, y = GAMEBAR_H},
-			"#000000",
+			menudata.palette.background,
 			game_buttonbar_button_handler)
 
 	for _, game in ipairs(pkgmgr.games) do

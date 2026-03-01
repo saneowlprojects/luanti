@@ -5,6 +5,21 @@
 -- Global menu data
 menudata = {}
 
+menudata.palette = {
+	primary          = "#6C5CE7",
+	primary_hover    = "#5A4BD1",
+	accent           = "#00D2FF",
+	background       = "#0F0F14",
+	surface          = "#1A1A24",
+	surface_hover    = "#24243A",
+	border           = "#2A2A3C",
+	text_primary     = "#F0F0F5",
+	text_secondary   = "#8888A0",
+	text_muted       = "#55556A",
+	success          = "#00E676",
+	error            = "#FF5252",
+}
+
 -- located in user cache path, for remembering this like e.g. last update check
 cache_settings = Settings(core.get_cache_path() .. DIR_DELIM .. "common.conf")
 
@@ -270,9 +285,10 @@ function menu_worldmt_legacy(selected)
 end
 
 function confirmation_formspec(message, confirm_id, confirm_label, cancel_id, cancel_label)
+	local p = menudata.palette
 	return "size[10,2.5,true]" ..
 			"label[0.5,0.5;" .. message .. "]" ..
-			"style[" .. confirm_id .. ";bgcolor=red]" ..
+			"style[" .. confirm_id .. ";bgcolor=" .. p.error .. "]" ..
 			"button[0.5,1.5;2.5,0.5;" .. confirm_id .. ";" .. confirm_label .. "]" ..
 			"button[7.0,1.5;2.5,0.5;" .. cancel_id .. ";" .. cancel_label .. "]"
 end

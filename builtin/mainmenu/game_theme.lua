@@ -7,6 +7,7 @@ mm_game_theme = {}
 local COLORS = {
 	dark = { clouds = "#1c2a47", sky = "#090b1a" },
 	light = { clouds = "#f0f0ff", sky = "#8cbafa" },
+	modern = { clouds = "#1A1A24", sky = "#0F0F14" },
 }
 
 --------------------------------------------------------------------------------
@@ -41,10 +42,15 @@ function mm_game_theme.set_engine(hide_decorations)
 		mm_game_theme.set_engine_single("footer")
 	end
 
-	local c = COLORS[core.settings:get("menu_theme")]
+	local theme = core.settings:get("menu_theme")
+	if theme == "light" or theme == "dark" then
+		theme = "modern" -- Force modern theme
+	end
+	local c = COLORS[theme]
 	if not c then
-		core.log("warning", "Invalid menu theme: " .. core.settings:get("menu_theme"))
-	else
+		c = COLORS.modern
+	end
+	if c then
 		core.set_clouds_color(c.clouds)
 		core.set_sky_color(c.sky)
 	end
@@ -80,10 +86,15 @@ function mm_game_theme.set_game(gamedetails)
 	mm_game_theme.set_game_single("header", gamedetails)
 	mm_game_theme.set_game_single("footer", gamedetails)
 
-	local c = COLORS[core.settings:get("menu_theme")]
+	local theme = core.settings:get("menu_theme")
+	if theme == "light" or theme == "dark" then
+		theme = "modern" -- Force modern theme
+	end
+	local c = COLORS[theme]
 	if not c then
-		core.log("warning", "Invalid menu theme: " .. core.settings:get("menu_theme"))
-	else
+		c = COLORS.modern
+	end
+	if c then
 		core.set_clouds_color(c.clouds)
 		core.set_sky_color(c.sky)
 	end
