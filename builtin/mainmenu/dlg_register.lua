@@ -7,14 +7,17 @@
 local function register_formspec(dialogdata)
 	-- TRANSLATORS: Message when joining a server
 	local title = fgettext("Joining $1", dialogdata.server and dialogdata.server.name or dialogdata.address)
-	local buttons_y = 4 + 1.3
+	local buttons_y = 4.3 + 1.3
 	if dialogdata.error then
 		buttons_y = buttons_y + 0.8
 	end
 
+	local p = menudata.palette
 	local retval = {
-		"formspec_version[4]",
-		"size[8,", tostring(buttons_y + 1.175), "]",
+		"formspec_version[6]",
+		"size[8,", tostring(buttons_y + 1.175), ",true]",
+		"bgcolor[;neither]",
+		"box[0,0;8,", tostring(buttons_y + 1.175), ";", p.surface, "]",
 		"set_focus[", (dialogdata.name ~= "" and "password" or "name"), "]",
 		"label[0.375,0.8;", title, "]",
 		"field[0.375,1.575;7.25,0.8;name;", core.formspec_escape(fgettext("Name")), ";",
@@ -25,7 +28,7 @@ local function register_formspec(dialogdata)
 
 	if dialogdata.error then
 		table.insert_all(retval, {
-			"box[0.375,", tostring(buttons_y - 0.9), ";7.25,0.6;darkred]",
+			"box[0.375,", tostring(buttons_y - 0.9), ";7.25,0.6;", p.error, "]",
 			"label[0.625,", tostring(buttons_y - 0.6), ";", core.formspec_escape(dialogdata.error), "]",
 		})
 	end

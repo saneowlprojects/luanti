@@ -96,10 +96,14 @@ local function get_formspec(data)
 
 	local mod = all_mods[data.selected_mod] or {name = ""}
 
+	local p = menudata.palette
 	local retval =
-		"size[11.5,7.5,true]" ..
-		"label[0.5,0;" .. fgettext("World:") .. "]" ..
-		"label[1.75,0;" .. core.formspec_escape(data.worldspec.name) .. "]"
+		"formspec_version[6]" ..
+		"size[11.5,8,true]" ..
+		"bgcolor[;neither]" ..
+		"box[0,0;11.5,8;" .. p.surface .. "]" ..
+		"label[0.5,0.4;" .. fgettext("World:") .. "]" ..
+		"label[1.75,0.4;" .. core.formspec_escape(data.worldspec.name) .. "]"
 
 	if mod.is_modpack or mod.type == "game" then
 		local info = core.formspec_escape(
@@ -193,37 +197,37 @@ local function get_formspec(data)
 	end
 
 	retval = retval ..
-		"button[3.25,7;2.5,0.5;btn_config_world_save;" ..
+		"button[3.25,7.2;2.5,0.6;btn_config_world_save;" ..
 		fgettext("Save") .. "]" ..
-		"button[5.75,7;2.5,0.5;btn_config_world_cancel;" ..
+		"button[5.85,7.2;2.5,0.6;btn_config_world_cancel;" ..
 		fgettext("Cancel") .. "]" ..
-		"button[9,7;2.5,0.5;btn_config_world_cdb;" ..
+		"button[8.75,7.2;2.5,0.6;btn_config_world_cdb;" ..
 		fgettext("Find More Mods") .. "]"
 
 	if mod.name ~= "" and not mod.always_on then
 		if mod.is_modpack then
 			if pkgmgr.is_modpack_entirely_enabled(data.list:get_raw_list(), mod) then
 				retval = retval ..
-					"button[5.5,0.125;3,0.5;btn_mp_disable;" ..
+					"button[5.5,0.25;2.8,0.5;btn_mp_disable;" ..
 					fgettext("Disable modpack") .. "]"
 			else
 				retval = retval ..
-					"button[5.5,0.125;3,0.5;btn_mp_enable;" ..
+					"button[5.5,0.25;2.8,0.5;btn_mp_enable;" ..
 					fgettext("Enable modpack") .. "]"
 			end
 		else
 			retval = retval ..
-				"checkbox[5.5,-0.125;cb_mod_enable;" .. fgettext("enabled") ..
+				"checkbox[5.5,0.25;cb_mod_enable;" .. fgettext("enabled") ..
 				";" .. tostring(mod.enabled) .. "]"
 		end
 	end
 	if enabled_all then
 		retval = retval ..
-			"button[8.95,0.125;2.5,0.5;btn_disable_all_mods;" ..
+			"button[8.7,0.25;2.5,0.5;btn_disable_all_mods;" ..
 			fgettext("Disable all") .. "]"
 	else
 		retval = retval ..
-			"button[8.95,0.125;2.5,0.5;btn_enable_all_mods;" ..
+			"button[8.7,0.25;2.5,0.5;btn_enable_all_mods;" ..
 			fgettext("Enable all") .. "]"
 	end
 
@@ -234,7 +238,7 @@ local function get_formspec(data)
 			",1=" .. core.formspec_escape(defaulttexturedir .. "checkbox_16.png") ..
 			",2=" .. core.formspec_escape(defaulttexturedir .. "error_icon_orange.png") ..
 			",3=" .. core.formspec_escape(defaulttexturedir .. "error_icon_red.png") .. ";text]" ..
-		"table[5.5,0.75;5.75,6;world_config_modlist;" ..
+		"table[5.5,0.8;5.75,6.2;world_config_modlist;" ..
 		pkgmgr.render_packagelist(data.list, use_technical_names, with_error) .. ";" .. data.selected_mod .."]"
 end
 

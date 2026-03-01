@@ -33,17 +33,20 @@ local function version_info_formspec(data)
 				"Visit $3 to find out how to get the newest version and stay up to date" ..
 				" with features and bugfixes.",
 			cur_ver.string, data.new_version or "", data.url or "")
+	local p = menudata.palette
 
 	local fs = {
-		"formspec_version[3]",
-		"size[12.8,7]",
-		"style_type[label;textcolor=#0E0]",
-		"label[0.5,0.8;", title, "]",
+		"formspec_version[6]",
+		"size[12.8,7,true]",
+		"bgcolor[;neither]",
+		"box[0,0;12.8,7;", p.surface, "]",
+		"style[title_label;textcolor=", p.primary, "]" ..
+		"label[0.5,0.8;title_label;", title, "]",
 		"textarea[0.4,1.6;12,3.4;;;", message, "]",
 		"container[0.4,5.8]",
 		"button[0.0,0;4.0,0.8;version_check_visit;", fgettext("Visit website"), "]",
 		"button[4.5,0;3.5,0.8;version_check_remind;", fgettext("Later"), "]",
-		"button[8.5.5,0;3.5,0.8;version_check_never;", fgettext("Never"), "]",
+		"button[8.5,0;3.5,0.8;version_check_never;", fgettext("Never"), "]",
 		"container_end[]",
 	}
 

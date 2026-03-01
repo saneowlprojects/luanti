@@ -5,22 +5,26 @@
 --------------------------------------------------------------------------------
 
 local function rename_modpack_formspec(dialogdata)
+	local p = menudata.palette
 	local retval =
+		"formspec_version[6]" ..
 		"size[11.5,4.5,true]" ..
-		"button[3.25,3.5;2.5,0.5;dlg_rename_modpack_confirm;"..
+		"bgcolor[;neither]" ..
+		"box[0,0;11.5,4.5;" .. p.surface .. "]" ..
+		"button[3.25,3.5;2.5,0.6;dlg_rename_modpack_confirm;"..
 				fgettext("Accept") .. "]" ..
-		"button[5.75,3.5;2.5,0.5;dlg_rename_modpack_cancel;"..
+		"button[5.85,3.5;2.5,0.6;dlg_rename_modpack_cancel;"..
 				fgettext("Cancel") .. "]"
 
-	local input_y = 2
+	local input_y = 1.5
 	if dialogdata.mod.is_name_explicit then
-		retval = retval .. "textarea[1,0.2;10,2;;;" ..
+		retval = retval .. "textarea[0.5,0.5;10.5,1.5;;;" ..
 				fgettext("This modpack has an explicit name given in its modpack.conf " ..
 						"which will override any renaming here.") .. "]"
-		input_y = 2.5
+		input_y = 2.2
 	end
 	retval = retval ..
-		"field[2.5," .. input_y .. ";7,0.5;te_modpack_name;" ..
+		"field[2.25," .. input_y .. ";7,0.8;te_modpack_name;" ..
 		fgettext("Rename Modpack:") .. ";" .. dialogdata.mod.dir_name .. "]"
 
 	return retval
