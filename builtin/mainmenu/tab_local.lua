@@ -183,23 +183,22 @@ local function get_formspec(tabview, name, tabdata)
 
 	local creative, damage, host = "", "", ""
 
-	-- Y offsets for game settings checkboxes
-	local y = 0.2
-	local yo = 0.5625
-
 	if world then
+		local y_cb = 0.2
+		local yo = 0.5625
+
 		if disabled_settings["creative_mode"] == nil then
-			creative = "checkbox[0,"..y..";cb_creative_mode;".. fgettext("Creative Mode") .. ";" ..
+			creative = "checkbox[0,"..y_cb..";cb_creative_mode;".. fgettext("Creative Mode") .. ";" ..
 				dump(core.settings:get_bool("creative_mode")) .. "]"
-			y = y + yo
+			y_cb = y_cb + yo
 		end
 		if disabled_settings["enable_damage"] == nil then
-			damage = "checkbox[0,"..y..";cb_enable_damage;".. fgettext("Enable Damage") .. ";" ..
+			damage = "checkbox[0,"..y_cb..";cb_enable_damage;".. fgettext("Enable Damage") .. ";" ..
 				dump(core.settings:get_bool("enable_damage")) .. "]"
-			y = y + yo
+			y_cb = y_cb + yo
 		end
 		if disabled_settings["enable_server"] == nil then
-			host = "checkbox[0,"..y..";cb_server;".. fgettext("Host Server") ..";" ..
+			host = "checkbox[0,"..y_cb..";cb_server;".. fgettext("Host Server") ..";" ..
 				dump(core.settings:get_bool("enable_server")) .. "]"
 		end
 	end
