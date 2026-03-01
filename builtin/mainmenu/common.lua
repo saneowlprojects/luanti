@@ -286,9 +286,12 @@ end
 
 function confirmation_formspec(message, confirm_id, confirm_label, cancel_id, cancel_label)
 	local p = menudata.palette
-	return "size[10,2.5,true]" ..
-			"label[0.5,0.5;" .. message .. "]" ..
+	return "formspec_version[6]" ..
+			"size[10,3,true]" ..
+			"bgcolor[;neither]" ..
+			"box[0,0;10,3;" .. p.surface .. "]" ..
+			"label[0.5,0.7;" .. message .. "]" ..
 			"style[" .. confirm_id .. ";bgcolor=" .. p.error .. "]" ..
-			"button[0.5,1.5;2.5,0.5;" .. confirm_id .. ";" .. confirm_label .. "]" ..
-			"button[7.0,1.5;2.5,0.5;" .. cancel_id .. ";" .. cancel_label .. "]"
+			"button[0.5,1.8;3,0.8;" .. confirm_id .. ";" .. confirm_label .. "]" ..
+			"button[6.5,1.8;3,0.8;" .. cancel_id .. ";" .. cancel_label .. "]"
 end

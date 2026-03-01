@@ -41,11 +41,18 @@ end
 -- "title" and "message" must already be formspec-escaped, e.g. via fgettext or
 -- core.formspec_escape.
 function ui.get_message_formspec(title, message, btn_id)
+	local p = (menudata and menudata.palette) or {
+		surface = "#1A1A24",
+		background = "#0F0F14",
+	}
 	return table.concat({
+		"formspec_version[6]",
 		"size[14,8]",
+		"bgcolor[;neither]",
+		"box[0,0;14,8;", p.surface or "#1A1A24", "]",
 		"real_coordinates[true]",
 		"set_focus[", btn_id, ";true]",
-		"box[0.5,1.2;13,5;#000]",
+		"box[0.5,1.2;13,5;", p.background or "#0F0F14", "]",
 		("textarea[0.5,1.2;13,5;;%s;%s]"):format(title, message),
 		"button[5,6.6;4,1;", btn_id, ";" .. fgettext("OK") .. "]",
 	})

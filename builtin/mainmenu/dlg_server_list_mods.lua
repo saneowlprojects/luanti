@@ -7,6 +7,7 @@ local function get_formspec(dialogdata)
 	local server = dialogdata.server
 	local group_by_prefix = dialogdata.group_by_prefix
 	local expand_all = dialogdata.expand_all
+	local p = menudata.palette
 
 	-- A wrongly behaving server may send ill formed mod names
 	table.sort(server.mods)
@@ -58,19 +59,23 @@ local function get_formspec(dialogdata)
 	end
 
 	local formspec = {
-		"formspec_version[8]",
-		"size[8,9.5]",
+		"formspec_version[6]",
+		"size[8,9.5,true]",
+		"bgcolor[;neither]",
+		"box[0,0;8,9.5;", p.surface, "]",
 		TOUCH_GUI and "padding[0.01,0.01]" or "",
-		"hypertext[0,0;8,1.5;;<global margin=5 halign=center valign=middle>", heading, "]",
+		"hypertext[0,0;8,1.5;;<global margin=5 halign=center valign=middle color=", p.text_primary, ">", heading, "]",
 		"tablecolumns[", group_by_prefix and
 			(expand_all and "indent;text" or "tree;text") or "text", "]",
 		"table[0.5,1.5;7,6.8;mods;", cells, "]",
 		-- TRANSLATORS: A checkbox; if enabled, it will group mods by their prefix
-		"checkbox[0.5,8.7;group_by_prefix;", fgettext("Group by prefix"), ";",
+		"container[0.5,8.6]",
+		"checkbox[0,0;group_by_prefix;", fgettext("Group by prefix"), ";",
 			group_by_prefix and "true" or "false", "]",
 		-- TRANSLATORS: Expand all entries in a tree view
-		group_by_prefix and ("checkbox[0.5,9.15;expand_all;" .. fgettext("Expand all") .. ";" ..
+		group_by_prefix and ("checkbox[0,0.5;expand_all;" .. fgettext("Expand all") .. ";" ..
 			(expand_all and "true" or "false") .. "]") or "",
+		"container_end[]",
 		"button[5.5,8.5;2,0.8;quit;OK]"
 	}
 	return table.concat(formspec, "")

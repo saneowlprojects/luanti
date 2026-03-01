@@ -15,9 +15,12 @@ local function get_formspec(dialogdata)
 		("<action name='doc_url'><style color='cyan' hovercolor='orangered'>%s</style></action>"):format(doc_url),
 	}, "\n")
 
+	local p = menudata.palette
 	return table.concat({
 		"formspec_version[6]",
-		"size[12,7]",
+		"size[12,7,true]",
+		"bgcolor[;neither]",
+		"box[0,0;12,7;", p.surface, "]",
 		"hypertext[0.5,0.5;11,4.7;text;", core.formspec_escape(markup), "]",
 		"container[0.5,5.7]",
 		"button[0,0;4,0.8;dismiss;", fgettext("Close"), "]",

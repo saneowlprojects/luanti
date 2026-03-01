@@ -271,11 +271,15 @@ local function create_world_formspec(dialogdata)
 		label_spflags = "label[0,"..y_start..";" .. fgettext("Mapgen-specific flags") .. "]"
 	end
 
+	local p = menudata.palette
 	local retval =
-		"size[12.25,7.4,true]" ..
+		"formspec_version[6]" ..
+		"size[12.25,8,true]" ..
+		"bgcolor[;neither]" ..
+		"box[0,0;12.25,8;" .. p.surface .. "]" ..
 
 		-- Left side
-		"container[0,0]"..
+		"container[0.3,0.3]"..
 		"field[0.3,0.6;6,0.5;te_world_name;" ..
 		fgettext("World name") ..
 		";" .. core.formspec_escape(dialogdata.worldname) .. "]" ..
@@ -309,15 +313,15 @@ local function create_world_formspec(dialogdata)
 		"container_end[]" ..
 
 		-- Right side
-		"container[6.2,0]"..
+		"container[6.5,0.3]"..
 		label_flags .. str_flags ..
 		label_spflags .. str_spflags ..
 		"container_end[]"..
 
 		-- Menu buttons
-		"container[0,6.9]"..
-		"button[3.25,0;3,0.5;world_create_confirm;" .. fgettext("Create") .. "]" ..
-		"button[6.25,0;3,0.5;world_create_cancel;" .. fgettext("Cancel") .. "]" ..
+		"container[0,7.2]"..
+		"button[3.125,0;3,0.6;world_create_confirm;" .. fgettext("Create") .. "]" ..
+		"button[6.125,0;3,0.6;world_create_cancel;" .. fgettext("Cancel") .. "]" ..
 		"container_end[]"
 
 	return retval

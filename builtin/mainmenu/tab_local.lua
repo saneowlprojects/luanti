@@ -205,6 +205,7 @@ local function get_formspec(tabview, name, tabdata)
 		end
 	end
 
+	local p = menudata.palette
 	retval = retval ..
 			"container[5.25,4.875]" ..
 			"button[6.65,0;3.225,0.8;world_create;".. fgettext("New") .. "]"
@@ -227,45 +228,36 @@ local function get_formspec(tabview, name, tabdata)
 			";" .. index .. "]" ..
 			"container_end[]"
 
+	retval = retval .. "container[0.375,3.2]"
 	if core.settings:get_bool("enable_server") and disabled_settings["enable_server"] == nil then
 		retval = retval ..
-				"button[10.1875,5.925;4.9375,0.8;play;".. fgettext("Host Game") .. "]" ..
-				"container[0.375,0.375]" ..
-				"checkbox[0,"..y..";cb_server_announce;" .. fgettext("Announce Server") .. ";" ..
+				"checkbox[0,0;cb_server_announce;" .. fgettext("Announce Server") .. ";" ..
 				dump(core.settings:get_bool("server_announce")) .. "]"
 
-		-- Reset y so that the text fields always start at the same position,
-		-- regardless of whether some of the checkboxes are hidden.
-		y = 0.2 + 4 * yo + 0.35
-
-		retval = retval .. "field[0," .. y .. ";4.5,0.75;te_playername;" .. fgettext("Name") .. ";" ..
+		retval = retval .. "field[0,1.1;4.5,0.75;te_playername;" .. fgettext("Name") .. ";" ..
 				core.formspec_escape(current_name) .. "]"
 
-		y = y + 1.15 + 0.25
-
-		retval = retval .. "pwdfield[0," .. y .. ";4.5,0.75;te_passwd;" .. fgettext("Password") .. "]"
-
-		y = y + 1.15 + 0.25
+		retval = retval .. "pwdfield[0,2.45;4.5,0.75;te_passwd;" .. fgettext("Password") .. "]"
 
 		local bind_addr = core.settings:get("bind_address")
 		if bind_addr ~= nil and bind_addr ~= "" then
 			retval = retval ..
-				"field[0," .. y .. ";3,0.75;te_serveraddr;" .. fgettext("Bind Address") .. ";" ..
+				"field[0,3.8;3,0.75;te_serveraddr;" .. fgettext("Bind Address") .. ";" ..
 				core.formspec_escape(core.settings:get("bind_address")) .. "]" ..
 				-- TRANSLATORS: Network port
-				"field[3.25," .. y .. ";1.25,0.75;te_serverport;" .. fgettext("Port") .. ";" ..
+				"field[3.25,3.8;1.25,0.75;te_serverport;" .. fgettext("Port") .. ";" ..
 				core.formspec_escape(current_port) .. "]"
 		else
 			retval = retval ..
-				"field[0," .. y .. ";4.5,0.75;te_serverport;" .. fgettext("Server Port") .. ";" ..
+				"field[0,3.8;4.5,0.75;te_serverport;" .. fgettext("Server Port") .. ";" ..
 				core.formspec_escape(current_port) .. "]"
 		end
-
-		retval = retval .. "container_end[]"
+		retval = retval .. "button[9.8125,2.725;4.9375,0.8;play;".. fgettext("Host Game") .. "]"
 	elseif world then
 		retval = retval ..
-				"button[10.1875,5.925;4.9375,0.8;play;" .. fgettext("Play Game") .. "]"
+				"button[9.8125,2.725;4.9375,0.8;play;" .. fgettext("Play Game") .. "]"
 	end
+	retval = retval .. "container_end[]"
 
 	return retval
 end

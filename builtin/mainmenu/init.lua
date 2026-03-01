@@ -98,13 +98,17 @@ local function init_globals()
 
 	local p = menudata.palette
 	core.set_formspec_prepend(
+		"formspec_version[6]" ..
 		"style_type[button;bgcolor=" .. p.primary .. ";textcolor=#FFFFFF;content_offset=0;border=false]" ..
 		"style_type[button:hovered;bgcolor=" .. p.primary_hover .. "]" ..
 		"style_type[button:pressed;bgcolor=" .. p.primary_hover .. ";content_offset=1]" ..
 		"style_type[checkbox;textcolor=" .. p.text_primary .. "]" ..
 		"style_type[label;textcolor=" .. p.text_primary .. "]" ..
 		"style_type[textlist;bgcolor=" .. p.surface .. ";textcolor=" .. p.text_primary .. ";border=false]" ..
-		"style_type[tabheader;textcolor=" .. p.text_secondary .. ";textcolor_active=" .. p.primary .. "]"
+		"style_type[tabheader;textcolor=" .. p.text_secondary .. ";textcolor_active=" .. p.primary .. "]" ..
+		"style_type[field,pwdfield,textarea;bgcolor=" .. p.surface .. ";textcolor=" .. p.text_primary .. ";border=false]" ..
+		"style_type[table;bgcolor=" .. p.surface .. ";textcolor=" .. p.text_primary .. ";border=false]" ..
+		"style_type[dropdown;bgcolor=" .. p.surface .. ";textcolor=" .. p.text_primary .. ";border=false]"
 	)
 
 	-- Create main tabview
