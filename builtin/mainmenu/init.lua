@@ -96,6 +96,17 @@ local function init_globals()
 	mm_game_theme.init()
 	mm_game_theme.set_engine() -- This is just a fallback.
 
+	local p = menudata.palette
+	core.set_formspec_prepend(
+		"style_type[button;bgcolor=" .. p.primary .. ";textcolor=#FFFFFF;content_offset=0;border=false]" ..
+		"style_type[button:hovered;bgcolor=" .. p.primary_hover .. "]" ..
+		"style_type[button:pressed;bgcolor=" .. p.primary_hover .. ";content_offset=1]" ..
+		"style_type[checkbox;textcolor=" .. p.text_primary .. "]" ..
+		"style_type[label;textcolor=" .. p.text_primary .. "]" ..
+		"style_type[textlist;bgcolor=" .. p.surface .. ";textcolor=" .. p.text_primary .. ";border=false]" ..
+		"style_type[tabheader;textcolor=" .. p.text_secondary .. ";textcolor_active=" .. p.primary .. "]"
+	)
+
 	-- Create main tabview
 	local tv_main = tabview_create("maintab", {x = MAIN_TAB_W, y = MAIN_TAB_H}, {x = 0, y = 0})
 
