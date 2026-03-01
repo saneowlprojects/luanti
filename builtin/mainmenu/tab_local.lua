@@ -201,11 +201,8 @@ local function get_formspec(tabview, name, tabdata)
 		if disabled_settings["enable_server"] == nil then
 			host = "checkbox[0,"..y..";cb_server;".. fgettext("Host Server") ..";" ..
 				dump(core.settings:get_bool("enable_server")) .. "]"
-			y = y + yo
 		end
 	end
-
-	local p = menudata.palette
 	retval = retval ..
 			"container[5.25,4.875]" ..
 			"button[6.65,0;3.225,0.8;world_create;".. fgettext("New") .. "]"
